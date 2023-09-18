@@ -1,0 +1,8 @@
+[package]
+name = "prussia_gs"
+version = "0.1.0"
+authors = ["Ty Lamontagne <amfobes@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+bitflags = "1.0.4"
