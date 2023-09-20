@@ -5,4 +5,5 @@ license = "MIT OR Apache-2.0"
 authors = ["Dan Ravensloft <dan.ravensloft@gmail.com>"]
 edition = "2018"
 
-[dependencies]
+[dependencies.bitflags]
+version = "2.4.0"

@@ -6,25 +6,25 @@ use core::ptr;
 
 use bitflags::bitflags;
 
-static mut PMODE: *mut u64 = 0x1200_0000 as *mut u64;
-static mut SMODE1: *mut u64 = 0x1200_0010 as *mut u64;
-static mut SMODE2: *mut u64 = 0x1200_0020 as *mut u64;
-static mut SRFSH: *mut u64 = 0x1200_0030 as *mut u64;
-static mut SYNCH1: *mut u64 = 0x1200_0040 as *mut u64;
-static mut SYNCH2: *mut u64 = 0x1200_0050 as *mut u64;
-static mut SYNCV: *mut u64 = 0x1200_0060 as *mut u64;
-static mut DISPFB1: *mut u64 = 0x1200_0070 as *mut u64;
-static mut DISPLAY1: *mut u64 = 0x1200_0080 as *mut u64;
-static mut DISPFB2: *mut u64 = 0x1200_0090 as *mut u64;
-static mut DISPLAY2: *mut u64 = 0x1200_00A0 as *mut u64;
-static mut EXTBUF: *mut u64 = 0x1200_00B0 as *mut u64;
-static mut EXTDATA: *mut u64 = 0x1200_00C0 as *mut u64;
-static mut EXTWRITE: *mut u64 = 0x1200_00D0 as *mut u64;
-static mut BGCOLOR: *mut u64 = 0x1200_00E0 as *mut u64;
-static mut CSR: *mut u64 = 0x1200_1000 as *mut u64;
-static mut IMR: *mut u64 = 0x1200_1010 as *mut u64;
-static mut BUSDIR: *mut u64 = 0x1200_1040 as *mut u64;
-static mut SIGLBLID: *mut u64 = 0x1200_1080 as *mut u64;
+static mut PMODE_ADDR: *mut u64 = 0x1200_0000 as *mut u64;
+static mut SMODE1_ADDR: *mut u64 = 0x1200_0010 as *mut u64;
+static mut SMODE2_ADDR: *mut u64 = 0x1200_0020 as *mut u64;
+static mut SRFSH_ADDR: *mut u64 = 0x1200_0030 as *mut u64;
+static mut SYNCH1_ADDR: *mut u64 = 0x1200_0040 as *mut u64;
+static mut SYNCH2_ADDR: *mut u64 = 0x1200_0050 as *mut u64;
+static mut SYNCV_ADDR: *mut u64 = 0x1200_0060 as *mut u64;
+static mut DISPFB1_ADDR: *mut u64 = 0x1200_0070 as *mut u64;
+static mut DISPLAY1_ADDR: *mut u64 = 0x1200_0080 as *mut u64;
+static mut DISPFB2_ADDR: *mut u64 = 0x1200_0090 as *mut u64;
+static mut DISPLAY2_ADDR: *mut u64 = 0x1200_00A0 as *mut u64;
+static mut EXTBUF_ADDR: *mut u64 = 0x1200_00B0 as *mut u64;
+static mut EXTDATA_ADDR: *mut u64 = 0x1200_00C0 as *mut u64;
+static mut EXTWRITE_ADDR: *mut u64 = 0x1200_00D0 as *mut u64;
+static mut BGCOLOR_ADDR: *mut u64 = 0x1200_00E0 as *mut u64;
+static mut CSR_ADDR: *mut u64 = 0x1200_1000 as *mut u64;
+static mut IMR_ADDR: *mut u64 = 0x1200_1010 as *mut u64;
+static mut BUSDIR_ADDR: *mut u64 = 0x1200_1040 as *mut u64;
+static mut SIGLBLID_ADDR: *mut u64 = 0x1200_1080 as *mut u64;
 
 bitflags! {
     /// PCRTC Mode Settings
@@ -49,7 +49,7 @@ bitflags! {
 impl PMODE {
     /// Set the PCRTC Mode Setting Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(PMODE, self.bits) };
+        unsafe { ptr::write_volatile(PMODE_ADDR, self.bits()) };
     }
 }
 
@@ -113,7 +113,7 @@ impl SMODE1 {
     There is the possibility that you can damage any video device connected to your PS2!
     Please be careful when changing these parameters!")]
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SMODE1, self.bits) };
+        unsafe { ptr::write_volatile(SMODE1_ADDR, self.bits()) };
     }
 }
 
@@ -140,7 +140,7 @@ bitflags! {
 impl SMODE2 {
     /// Set the video synchronization settings Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SMODE2, self.bits) };
+        unsafe { ptr::write_volatile(SMODE2_ADDR, self.bits()) };
     }
 }
 
@@ -155,7 +155,7 @@ bitflags! {
 impl SRFSH {
     /// Set the DRAM Refresh Settings Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SRFSH, self.bits) };
+        unsafe { ptr::write_volatile(SRFSH_ADDR, self.bits()) };
     }
 }
 
@@ -181,7 +181,7 @@ impl SYNCH1 {
     There is the possibility that you can damage any video device connected to your PS2!
     Please be careful when changing these parameters!")]
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SYNCH1, self.bits) };
+        unsafe { ptr::write_volatile(SYNCH1_ADDR, self.bits()) };
     }
 }
 
@@ -201,7 +201,7 @@ impl SYNCH2 {
     There is the possibility that you can damage any video device connected to your PS2!
     Please be careful when changing these parameters!")]
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SYNCH2, self.bits) };
+        unsafe { ptr::write_volatile(SYNCH2_ADDR, self.bits()) };
     }
 }
 
@@ -229,7 +229,7 @@ impl SYNCV {
     There is the possibility that you can damage any video device connected to your PS2!
     Please be careful when changing these parameters!")]
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SYNCV, self.bits) };
+        unsafe { ptr::write_volatile(SYNCV_ADDR, self.bits()) };
     }
 }
 
@@ -252,7 +252,7 @@ bitflags! {
 impl DISPFB1 {
     /// Set Rectangle Display Area for Circuit 1 Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(DISPFB1, self.bits) };
+        unsafe { ptr::write_volatile(DISPFB1_ADDR, self.bits()) };
     }
 }
 
@@ -277,7 +277,7 @@ bitflags! {
 impl DISPLAY1 {
     /// Set Rectangle Display Area for Circuit 1 Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(DISPLAY1, self.bits) };
+        unsafe { ptr::write_volatile(DISPLAY1_ADDR, self.bits()) };
     }
 }
 
@@ -300,7 +300,7 @@ bitflags! {
 impl DISPFB2 {
     /// Set Rectangle Display Area for Circuit 2 Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(DISPFB2, self.bits) };
+        unsafe { ptr::write_volatile(DISPFB2_ADDR, self.bits()) };
     }
 }
 
@@ -325,7 +325,7 @@ bitflags! {
 impl DISPLAY2 {
     /// Set Rectangle Display Area for Circuit 2 Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(DISPLAY2, self.bits) };
+        unsafe { ptr::write_volatile(DISPLAY2_ADDR, self.bits()) };
     }
 }
 
@@ -354,7 +354,7 @@ bitflags! {
 impl EXTBUF {
     /// Set the Feedback Write Buffer Setting Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(EXTBUF, self.bits) };
+        unsafe { ptr::write_volatile(EXTBUF_ADDR, self.bits()) };
     }
 }
 
@@ -379,7 +379,7 @@ bitflags! {
 impl EXTDATA {
     /// Set the Feedback Write Buffer Setting Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(EXTDATA, self.bits) };
+        unsafe { ptr::write_volatile(EXTDATA_ADDR, self.bits()) };
     }
 }
 
@@ -394,7 +394,7 @@ bitflags! {
 impl EXTWRITE {
     /// Set the Feedback Write Control Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(EXTWRITE, self.bits) };
+        unsafe { ptr::write_volatile(EXTWRITE_ADDR, self.bits()) };
     }
 }
 
@@ -413,7 +413,7 @@ bitflags! {
 impl BGCOLOR {
     /// Set the Feedback Write Control Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(BGCOLOR, self.bits) };
+        unsafe { ptr::write_volatile(BGCOLOR_ADDR, self.bits()) };
     }
 }
 
@@ -450,13 +450,13 @@ bitflags! {
 impl CSR {
     /// Set GS Status Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(CSR, self.bits) };
+        unsafe { ptr::write_volatile(CSR_ADDR, self.bits()) };
     }
 
     /// Read GS Status Register
     pub fn load() -> Self {
-        let csr = unsafe { ptr::read_volatile(CSR) };
-        CSR { bits: csr }
+        let csr = unsafe { ptr::read_volatile(CSR_ADDR) };
+        return CSR::from_bits_truncate(csr);
     }
 }
 
@@ -479,7 +479,7 @@ bitflags! {
 impl IMR {
     /// Set the Interrupt Mask Control Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(IMR, self.bits) };
+        unsafe { ptr::write_volatile(IMR_ADDR, self.bits()) };
     }
 }
 
@@ -496,7 +496,7 @@ bitflags! {
 impl BUSDIR {
     /// Set the Host Interface Bus Direction Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(BUSDIR, self.bits) };
+        unsafe { ptr::write_volatile(BUSDIR_ADDR, self.bits()) };
     }
 }
 
@@ -513,12 +513,12 @@ bitflags! {
 impl SIGLBLID {
     /// Set the Singal ID Value Register
     pub fn store(self) {
-        unsafe { ptr::write_volatile(SIGLBLID, self.bits) };
+        unsafe { ptr::write_volatile(SIGLBLID_ADDR, self.bits()) };
     }
 
     /// Read the Singal ID Value Register
     pub fn load() -> Self {
-        let siglblid = unsafe { ptr::read_volatile(SIGLBLID) };
-        SIGLBLID { bits: siglblid }
+        let siglblid = unsafe { ptr::read_volatile(SIGLBLID_ADDR) };
+        return SIGLBLID::from_bits_truncate(siglblid);
     }
 }
