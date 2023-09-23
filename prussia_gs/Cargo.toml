@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["Ty Lamontagne <amfobes@gmail.com>"]
 edition = "2021"
 
-[dependencies.bitflags]
-version = "2.4.0"
+[dependencies]
+bitfield-struct = "0.5.4"
