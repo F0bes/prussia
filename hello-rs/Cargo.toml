@@ -9,3 +9,7 @@ panic-halt = "0.2.0"
 prussia_bios = { path = "../prussia_bios" }
 prussia_dma = { path = "../prussia_dma" }
 prussia_rt = { path = "../prussia_rt" }
+prussia_debug = { path = "../prussia_debug" }
+prussia_gs = { path = "../prussia_gs" }
+prussia_timer = { path = "../prussia_timer" }
+prussia_2d = { path = "../prussia_2d" }

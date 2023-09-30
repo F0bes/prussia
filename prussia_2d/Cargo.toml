@@ -1,0 +1,13 @@
+[package]
+name = "prussia_2d"
+version = "0.1.0"
+authors = ["Ty Lamontagne <amfobes@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+prussia_gs = { path = "../prussia_gs" }
+prussia_dma = { path = "../prussia_dma" }
+prussia_bios = { path = "../prussia_bios" }
+prussia_debug = { path = "../prussia_debug" }
+aligned = "0.3.0"
+

@@ -3,6 +3,8 @@
 #![no_std]
 #![deny(missing_docs)]
 
+mod tags;
+pub use tags::*;
 /// Wrappers around GS privileged registers.
 pub mod privileged {
     use bitfield_struct::bitfield;
@@ -266,11 +268,13 @@ pub mod privileged {
         pub magh: u16,
         #[bits(2)]
         pub magv: u16,
+        #[bits(3)]
+        __: u16,
         #[bits(12)]
         pub dw: u16,
         #[bits(11)]
         pub dh: u16,
-        #[bits(12)]
+        #[bits(9)]
         __: u16,
     }
 
@@ -320,11 +324,13 @@ pub mod privileged {
         pub magh: u16,
         #[bits(2)]
         pub magv: u16,
+        #[bits(3)]
+        __: u16,
         #[bits(12)]
         pub dw: u16,
         #[bits(11)]
         pub dh: u16,
-        #[bits(12)]
+        #[bits(9)]
         __: u16,
     }
 
